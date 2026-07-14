@@ -4,9 +4,8 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from hornet.models import CarModel
 from hornet.core.database import Base
-from hornet.models import RentalModel
+from hornet.models import CarModel, RentalModel
 
 _models = (CarModel, RentalModel)
 
