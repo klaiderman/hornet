@@ -1,0 +1,9 @@
+from typing import Protocol
+
+from hornet.commands import EndRental, RegisterRental
+from hornet.entities import Rental
+
+class RentalService(Protocol):
+    def register_rental(self, command: RegisterRental) -> Rental: ...
+    def end_rental(self, command: EndRental) -> Rental: ...
+    def list_rentals(self, open_only: bool, limit: int | None, offset: int) -> list[Rental]: ...
