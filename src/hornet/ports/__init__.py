@@ -3,6 +3,8 @@ from hornet.ports.rental import RentalEventPublisher, RentalRepository, RentalSe
 
 __all__ = [
     "CarRepository",
+    "CarService",
     "RentalEventPublisher",
     "RentalRepository",
+    "RentalService",
 ]
