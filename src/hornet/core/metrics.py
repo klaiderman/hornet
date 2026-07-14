@@ -5,7 +5,9 @@ from collections.abc import Callable
 from prometheus_client import Gauge
 from prometheus_fastapi_instrumentator import Instrumentator
 
-def cached(fn: Callable[[], int], ttl_seconds: float = 5.0) -> Callable[[], int]:
+from hornet.constants import CACHE_TTL_SECONDS
+
+def cached(fn: Callable[[], int], ttl_seconds: float = CACHE_TTL_SECONDS) -> Callable[[], int]:
     state: dict[str, object] = {"value": None, "ts": None}
 
     def run() -> int:

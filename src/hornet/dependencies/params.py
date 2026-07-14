@@ -2,4 +2,6 @@ from typing import Annotated
 
 from fastapi import Path
 
-ResourceId = Annotated[int, Path(le=2_147_483_647)]
+from hornet.constants import MAX_INT_ID
+
+ResourceId = Annotated[int, Path(le=MAX_INT_ID)]

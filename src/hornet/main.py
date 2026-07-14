@@ -5,6 +5,7 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 
+from hornet.constants import RATE_LIMIT
 from hornet.core import get_settings, instrument
 from hornet.routers import car_router, health_router, install_error_handlers, rental_router
 from hornet.runner import lifespan
@@ -39,7 +40,7 @@ class Application:
         self.run()
 
     def _configure_rate_limiting(self) -> None:
-        limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
+        limiter = Limiter(key_func=get_remote_address, default_limits=[RATE_LIMIT])
         self._app.state.limiter = limiter
         self._app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
         self._app.add_middleware(SlowAPIMiddleware)
